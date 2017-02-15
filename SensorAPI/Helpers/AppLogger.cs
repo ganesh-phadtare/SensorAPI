@@ -10,7 +10,7 @@ namespace SensorIOT.Helpers
 {
     public class AppLogger
     {
-        static string _FileName = "D:/IOTLogger.txt";
+        static string _FileName = "D:/APILogger.txt";
         public static void LogError(Exception ex)
         {
             try
