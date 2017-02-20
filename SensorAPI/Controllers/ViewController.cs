@@ -1,4 +1,5 @@
 ﻿using SensorAPI.Service;
+using SensorIOT.Helpers;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -21,13 +22,14 @@ namespace SensorAPI.Controllers
             _renderService = service;
         }
         [Route("test/{execType}"), HttpPost]
-        public async Task StartUp([FromUri] int execType, [FromBody]Dictionary<string, string> paramSet)
+        public void StartUp([FromUri] int execType, [FromBody]Dictionary<string, string> paramSet)
         {
             Stopwatch watch = new Stopwatch();
             watch.Start();
-            await _renderService.Fetch(execType, paramSet);
+            _renderService.Fetch(execType, paramSet);
 
             watch.Stop();
+            AppLogger.LogTimerAPI(watch);
             //_logger.Info(string.Format("Entire Call for {0} took {1}", form, watch.ElapsedMilliseconds));
             //return data;
         }
